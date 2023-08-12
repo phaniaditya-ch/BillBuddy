@@ -16,7 +16,10 @@ function Navbar() {
 					<li><Link to="">Contact</Link></li>
 				</ul>
 
-				<Link to="/" className="btn">Book Now</Link>
+				<div className='btn-flex'>
+					<Link to="/" className="btn">Log In</Link>
+					<Link to="/" className="btn">Sign Up</Link>
+				</div>
 			</nav>
 		</div>
 	)

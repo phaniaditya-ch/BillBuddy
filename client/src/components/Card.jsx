@@ -6,6 +6,7 @@ function Card(props) {
 
 	const data = props.data
 	const { globalState, setGlobalState } = useContext(MyContext)
+	const [showModal, setShowModal] = useState(false)
 
 	// const fetchRes = () => {
 	// 	let temp = globalState.history.array.forEach(element => {
@@ -113,11 +114,15 @@ function Card(props) {
 		}
 	  };
 
+	  const handleHover = () => {
+		setShowModal(!showModal)
+	  }
+
 	  const style1={'background': 'rgb(0,80,5) linear-gradient(180deg, rgba(0,80,5,1) 0%, rgba(26,176,0,1) 100%)'}
 	  const style2={'background': 'rgb(80,0,0) linear-gradient(180deg, rgba(80,0,0,1) 0%, rgba(176,0,0,1) 100%)'}
 
 	return (
-		<div className='Card-with-del'>
+		<div className='Card-with-del' onMouseEnter={handleHover} onMouseLeave={handleHover}>
 			<div className='Card' style={props.data.resolved ? style1 : style2} >
 				<div className='Card-1'>
 					<div className='Card-11'>
@@ -141,7 +146,11 @@ function Card(props) {
 				</div>
 				{props.data.resolved ? 'resolved' : 'not resolved'}
 			</div>
-			<div className='side-icons' onClick={handleApprove}>
+			<div className='side-icons' style={{
+				'position': 'relative',
+				'top': showModal ? '-.8rem' : '-3.2rem',
+				'transition': 'top 0.3s ease'
+				}} onClick={handleApprove}>
 				<div className="approve-icon">
 					<img src='src\assets\approve.png' alt='done' />
 				</div>

@@ -1,6 +1,5 @@
 const { connectToDb, getDb } = require('./database/db');
 
-const { ObjectID } = require('mongodb');
 require('dotenv').config()
 const { ObjectId } = require('mongodb')
 const bcrypt = require('bcrypt')

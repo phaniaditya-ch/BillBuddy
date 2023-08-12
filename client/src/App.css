@@ -12,7 +12,6 @@
 }
 
 .Card {
-  min-height: 10rem;
   width: 20rem;
   border: 1px solid white;
   border-radius: 10px;
@@ -76,7 +75,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  
+  padding: 0 15rem 0 15rem
 }
 
 .net-flex{
@@ -88,6 +87,7 @@
   border-radius: 10px;
   padding: .8rem;
   margin: 1rem 0 1rem 0;
+  min-width: 15rem;
 }
 
 input{
@@ -125,13 +125,18 @@ form button{
 }
 
 .delete-icon, .approve-icon{
-  background-color: white;
-  height: 100%;
+  background-color: rgba(255, 255, 255, 0.902);
+  /* height: 100px; */
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  flex: 1;
+  padding-top: 1rem;
+  /* position: relative; */
+  z-index: -1000;
+  /* top: -1rem; */
 }
 
 .delete-icon img, .approve-icon img{
@@ -139,17 +144,54 @@ form button{
 }
 
 .Card-with-del{
+  min-height: 10rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   height: 15rem;
   /* background-color: white; */
 }
 
 .approve-icon{
-  border: 2px solid green;
+  border-radius: 0 0 0 15px;
+  border: 1px solid black;
 }
 
 .delete-icon{
-  border: 2px solid red;
+  border-radius: 0 0 15px 0;
+  border: 1px solid black;
+}
+
+.side-icons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* align-items: center; */
+  width: 100%;
+  cursor: pointer;
+  padding-bottom: 0;
+}
+
+.card-div{
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto ;
+  gap: 1rem;
+}
+
+select{
+  background-color: #151515;
+}
+
+.form-input{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.form-flex{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
