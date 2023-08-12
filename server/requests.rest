@@ -1,0 +1,29 @@
+GET http://localhost:6969/
+
+###
+
+GET http://localhost:6969/all
+
+###
+
+POST http://localhost:6969/addExpense
+Content-Type: application/json
+
+{
+    "title":"Srikar",
+    "date":"29/01/2004",
+    "owesYou":true,
+    "amount1":{"$numberInt":"4200"},
+    "amount2":{"$numberInt":"1000"},
+    "comment":"For Strip Club",
+    "resolved":"false"
+}
+
+###
+
+PATCH http://localhost:6969/addResolved
+Content-Type: application/json
+
+{
+    "_id": "64d68752e4b128c6ea3c96a7"
+}
