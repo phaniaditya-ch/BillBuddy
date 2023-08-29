@@ -19,6 +19,7 @@ function Card(props) {
 	// const [res, setRes] = useState(fetchRes())
 
 	const handleDelete = () => {
+		console.log('clicked delete')
 		fetch(`http://localhost:6969/delete-expense/${props.data._id}`, {
 			method: 'DELETE',
 			headers: {
@@ -77,49 +78,50 @@ function Card(props) {
 	// }
 
 	const handleApprove = async () => {
+		console.log('clicked delete')
 		try {
-		  const response = await fetch(`http://localhost:6969/addResolved`, {
-			method: 'PATCH',
-			headers: {
-			  'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-			  _id: props.data._id
-			})
-		  });
-	  
-		  if (response.ok) {
-			// Update the local state
-			const updatedHistory = globalState.history.map(element => {
-			  if (element._id === props.data._id) {
-				return {
-				  ...element,
-				  resolved: !props.data.resolved
-				};
-			  }
-			  return element;
+			const response = await fetch(`http://localhost:6969/addResolved`, {
+				method: 'PATCH',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					_id: props.data._id
+				})
 			});
-	  
-			await setGlobalState({
-			  ...globalState,
-			  history: updatedHistory
-			});
-	  
-			console.log('Updated successfully with: ', updatedHistory);
-		  } else {
-			console.log('Failed to update');
-		  }
+
+			if (response.ok) {
+				// Update the local state
+				const updatedHistory = globalState.history.map(element => {
+					if (element._id === props.data._id) {
+						return {
+							...element,
+							resolved: !props.data.resolved
+						};
+					}
+					return element;
+				});
+
+				await setGlobalState({
+					...globalState,
+					history: updatedHistory
+				});
+
+				console.log('Updated successfully with: ', updatedHistory);
+			} else {
+				console.log('Failed to update');
+			}
 		} catch (error) {
-		  console.error('Error:', error);
+			console.error('Error:', error);
 		}
-	  };
+	};
 
-	  const handleHover = () => {
+	const handleHover = () => {
 		setShowModal(!showModal)
-	  }
+	}
 
-	  const style1={'background': 'rgb(0,80,5) linear-gradient(180deg, rgba(0,80,5,1) 0%, rgba(26,176,0,1) 100%)'}
-	  const style2={'background': 'rgb(80,0,0) linear-gradient(180deg, rgba(80,0,0,1) 0%, rgba(176,0,0,1) 100%)'}
+	const style1 = { 'background': 'rgb(0,80,5) linear-gradient(180deg, rgba(0,80,5,1) 0%, rgba(26,176,0,1) 100%)' }
+	const style2 = { 'background': 'rgb(80,0,0) linear-gradient(180deg, rgba(80,0,0,1) 0%, rgba(176,0,0,1) 100%)' }
 
 	return (
 		<div className='Card-with-del' onMouseEnter={handleHover} onMouseLeave={handleHover}>
@@ -148,10 +150,9 @@ function Card(props) {
 			</div>
 			<div className='side-icons' style={{
 				'position': 'relative',
-				'top': showModal ? '-.8rem' : '-3.2rem',
-				'transition': 'top 0.3s ease'
-				}} onClick={handleApprove}>
-				<div className="approve-icon">
+				"padding": 'none'
+			}}>
+				<div className="approve-icon" onMouseEnter={() => { console.log('mouse entered') }} onClick={handleApprove}>
 					<img src='src\assets\approve.png' alt='done' />
 				</div>
 				<div className='delete-icon' onClick={handleDelete}>
